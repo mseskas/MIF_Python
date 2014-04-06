@@ -39,12 +39,30 @@ def analize_single_file(path, name):
 
     statistics = file_statistics(name)
     statistics.words_dic = dic_word
-    statistics.char_dic = dic_char
+    statistics.chars_dic = dic_char
     return statistics
 
 
-def total_statistics(list_of_lists):
-    print "not implemented add_lists function"
+def total_statistics(list_of_statistics):
+    total = file_statistics("!Total")
+    total_words = dict()
+    total_chars = dict()
+    for stat in list_of_statistics:
+        for word in stat.words_dic:
+            if (total_words.get(word) is not None):
+                total_words[word] = total_words[word] + stat.words_dic[word]
+            else:
+                total_words[word] = stat.words_dic[word]
+
+        for char in stat.chars_dic:
+            if (total_chars.get(char) is not None):
+                total_chars[char] = total_chars[char] + stat.chars_dic[char]
+            else:
+                total_chars[char] = stat.chars_dic[char]
+
+    total.words_dic = total_words
+    total.chars_dic = total_chars
+    return total
 
 
 def write_statistics(total, list_of_statistics, file_name):
