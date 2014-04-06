@@ -7,13 +7,17 @@ class analizer:
     __work_dir__ = None
 
     def __init__(self, path):
-        self.__work_dir__ = path
+        if (os.path.exists(path) is not False):
+            self.__work_dir__ = path
+        else:
+            print "Error no such directory exist."
+            quit()
 
     def analize_dir(self):
         list_of_obj = os.listdir(self.__work_dir__)
         list_of_files = list()
-        for obj in list_of_files:
-            if (os.path.isfile(obj) is True):
+        for obj in list_of_obj:
+            if (os.path.isfile(self.__work_dir__ + "/" + obj) is True):
                 list_of_files.append(obj)
 
         list_of_statistics = list()
@@ -29,10 +33,11 @@ class analizer:
         array_char = list(content)
         dic_char = dict()
         for char in array_char:
-            if (dic_char.get(char) is not None):
-                dic_char[char] = dic_char[char] + 1
-            else:
-                dic_char[char] = 1
+            if (char.isalpha() is True):
+                if (dic_char.get(char) is not None):
+                    dic_char[char] = dic_char[char] + 1
+                else:
+                    dic_char[char] = 1
 
         array_char = None
         array_word = content.split()  # split to word including newLine
@@ -77,8 +82,26 @@ class analizer:
         except Exception:
             print "Error : result can't be saved in : \"" + \
                   file_name + "\" file"
-            quit()
+            return None
         # list().sort()
-        if (len(total) == 0):
-            dest_file.write("Directory \"" + self.__work_dir__ + "\" files'"
-                            + " statistics :\n")
+        dest_file.write("Directory \"" + self.__work_dir__ + "\" files'"
+            + " statistics :\n")
+        if (len(total.chars_dic) == 0):
+            dest_file.write("There is no statistics.")
+            return None
+        dest_file.write("List of words and times used :\n")
+        for word in total.words_dic:
+            dest_file.write( word + " - " + str(total.words_dic[word]) + "\n")
+        dest_file.write("List of chars and times used :\n")
+        for char in total.chars_dic:
+            dest_file.write( char + " - " + str(total.chars_dic[char]) + "\n")
+
+        for file_stat in list_of_statistics:
+            dest_file.write("File \"" + file_stat.get_file_name() + "\" statistics :\n")
+            dest_file.write("List of words and times used in file:\n")
+            for word in file_stat.words_dic:
+                dest_file.write( word + " - " + str(file_stat.words_dic[word]) + "\n")
+            dest_file.write("List of chars and times used in file:\n")
+            for char in file_stat.chars_dic:
+                dest_file.write( char + " - " + str(file_stat.chars_dic[char]) + "\n")
+        dest_file.write("#End of file.")
