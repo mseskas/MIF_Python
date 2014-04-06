@@ -1,7 +1,7 @@
 import sys
 import os
 
-from analizer import *
+from analizer import analizer
 
 current_directory = ""
 if (len(sys.argv) == 1):
@@ -12,6 +12,7 @@ else:
 
 print ("Program will try to analyze \"" +
        current_directory + "\" directory")
-analize_dir(current_directory)
+analize_tool = analizer(current_directory)
+analize_tool.analize_dir()
 print "End of program"
 quit()
