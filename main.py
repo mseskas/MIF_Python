@@ -14,6 +14,6 @@ else:
 print ("Program will try to analyze \"" +
        current_directory + "\" directory")
 analize_tool = analizer(current_directory)
-analize_tool.analize_dir()
+analize_tool.analize_dir("result.txt")
 print "End of program"
 quit()

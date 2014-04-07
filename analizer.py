@@ -2,6 +2,8 @@ from statistics_types import file_statistics
 import os
 
 
+# Analizer class that analizes directory/file and writes statistics
+# to specified file in current work directory
 class analizer:
 
     __work_dir__ = None
@@ -12,7 +14,9 @@ class analizer:
         else:
             print "Error no such directory exist."
 
-    def analize_dir(self):
+# Analize all files in current work directory and write statistics
+# to specified file
+    def analize_dir(self, result_file_name):
         if (self.__work_dir__ is None):
             return False
         list_of_obj = os.listdir(self.__work_dir__)
@@ -27,9 +31,10 @@ class analizer:
             list_of_statistics.append(self.analize_single_file(current))
 
         total = self.total_statistics(list_of_statistics)
-        self.write_statistics(total, list_of_statistics, "result.txt")
+        self.write_statistics(total, list_of_statistics, result_file_name)
         return True
 
+# Analize single file and return file_statistics object as result
     def analize_single_file(self, name):
         if (self.__work_dir__ is None):
             return None
@@ -58,6 +63,8 @@ class analizer:
         statistics.chars_dic = dic_char
         return statistics
 
+# Sums every file_statistics element in list_of_statistics and
+# return file_statistics object as result
     def total_statistics(self, list_of_statistics):
         total = file_statistics(".total")
         total_words = dict()
@@ -81,6 +88,7 @@ class analizer:
         total.chars_dic = total_chars
         return total
 
+# Write statistics to specified file
     def write_statistics(self, total, list_of_statistics, file_name):
         try:
             dest_file = open(file_name, "w")
