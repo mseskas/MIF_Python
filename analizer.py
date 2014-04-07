@@ -32,6 +32,9 @@ class Analizer:
 
         total = self.total_statistics(list_of_statistics)
         self.write_statistics(total, list_of_statistics, result_file_name)
+        print "Analyze summary : total words found - " \
+              + str(len(total.words_dic)) + ", total chars found - " \
+              + str(len(total.chars_dic))
         return True
 
 # Analize single file and return FileStatistics object as result
