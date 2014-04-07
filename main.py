@@ -6,6 +6,7 @@ from analizer import analizer
 current_directory = ""
 if (len(sys.argv) == 1):
     print "No arguments found!"
+    # set current directory as work directory
     current_directory = os.path.realpath(os.curdir)
 else:
     current_directory = os.path.realpath(sys.argv[1])

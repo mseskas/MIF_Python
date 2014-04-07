@@ -1,8 +1,8 @@
-# class that holds file's statistics
+# class that contains file's statistics
 class file_statistics:
     __file_name__ = ""
-    words_dic = None
-    chars_dic = None
+    words_dic = None  # words dictionary
+    chars_dic = None  # chars dictionary
 
     def __init__(self, name):
         self.__file_name__ = name
