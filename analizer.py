@@ -1,10 +1,10 @@
-from statistics_types import file_statistics
+from statistics_types import FileStatistics
 import os
 
 
 # Analizer class that analizes directory/file and writes statistics
 # to specified file in current work directory
-class analizer:
+class Analizer:
 
     __work_dir__ = None
 
@@ -34,7 +34,7 @@ class analizer:
         self.write_statistics(total, list_of_statistics, result_file_name)
         return True
 
-# Analize single file and return file_statistics object as result
+# Analize single file and return FileStatistics object as result
     def analize_single_file(self, name):
         if (self.__work_dir__ is None):
             return None
@@ -58,15 +58,15 @@ class analizer:
             else:
                 dic_word[word] = 1
 
-        statistics = file_statistics(name)
+        statistics = FileStatistics(name)
         statistics.words_dic = dic_word
         statistics.chars_dic = dic_char
         return statistics
 
-# Sums every file_statistics element in list_of_statistics and
-# return file_statistics object as result
+# Sums every FileStatistics element in list_of_statistics and
+# return FileStatistics object as result
     def total_statistics(self, list_of_statistics):
-        total = file_statistics(".total")
+        total = FileStatistics(".total")
         total_words = dict()
         total_chars = dict()
         for stat in list_of_statistics:

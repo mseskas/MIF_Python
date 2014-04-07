@@ -1,5 +1,5 @@
 # class that contains file's statistics
-class file_statistics:
+class FileStatistics:
     __file_name__ = ""
     words_dic = None  # words dictionary
     chars_dic = None  # chars dictionary
