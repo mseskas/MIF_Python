@@ -103,11 +103,15 @@ class Analizer:
             dest_file.write("There is no statistics.")
             return None
         dest_file.write("List of words and times used :\n")
-        for word in total.words_dic:
+        sorted_words = total.words_dic.keys()
+        sorted_words.sort()        
+        for word in sorted_words:
             dest_file.write("\t" + word + " - " + str(total.words_dic[word])
                             + "\n")
         dest_file.write("List of chars and times used :\n")
-        for char in total.chars_dic:
+        sorted_chars = total.chars_dic.keys()
+        sorted_chars.sort() 
+        for char in sorted_chars:
             dest_file.write("\t" + char + " - " + str(total.chars_dic[char])
                             + "\n")
         # write each file's statistics
@@ -115,11 +119,15 @@ class Analizer:
             dest_file.write("File \"" + file_stat.get_file_name()
                             + "\" statistics :\n")
             dest_file.write("List of words and times used in file:\n")
-            for word in file_stat.words_dic:
+            sorted_words = file_stat.words_dic.keys()
+            sorted_words.sort()        
+            for word in sorted_words:
                 dest_file.write("\t" + word + " - "
                                 + str(file_stat.words_dic[word]) + "\n")
             dest_file.write("List of chars and times used in file:\n")
-            for char in file_stat.chars_dic:
+            sorted_chars = file_stat.chars_dic.keys()
+            sorted_chars.sort() 
+            for char in sorted_chars:
                 dest_file.write("\t" + char + " - "
                                 + str(file_stat.chars_dic[char]) + "\n")
         dest_file.write("#End of file.")
