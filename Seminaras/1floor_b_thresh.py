@@ -24,7 +24,7 @@ cv.CvtColor(img, hsv, cv.CV_BGR2HSV)
 cv.InRangeS(hsv, cv.Scalar(80,0,0), cv.Scalar(180,255,255), dst)
 
 cv.ShowImage("thr", dst)
-cv.ShowImage("img", hsv)
+cv.ShowImage("img", img)
 
 cv.WaitKey(0)
 cv.DestroyAllWindows()

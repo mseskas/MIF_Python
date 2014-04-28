@@ -1,8 +1,6 @@
 import cv2.cv as cv
 import cv2
 
-import sys
-
 cv.NamedWindow("camera", 1)
 cv.NamedWindow("thr", 1)
 

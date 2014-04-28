@@ -1,9 +1,6 @@
 import cv2.cv as cv
 import cv2
 
-import sys
-
-
 cv.NamedWindow("img", 1)
 cv.NamedWindow("thr", 1)
 
@@ -23,7 +20,7 @@ cv.CvtColor(img, hsv, cv.CV_BGR2HSV)
 cv.InRangeS(hsv, (0,100,0), (180,255,255), dst)
 
 cv.ShowImage("thr", dst)
-cv.ShowImage("img", hsv)
+cv.ShowImage("img", img)
 
 cv.WaitKey(0)
 cv.DestroyAllWindows()
