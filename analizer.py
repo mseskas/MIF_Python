@@ -18,7 +18,7 @@ class Analizer:
 # to specified file
     def analize_dir(self, result_file_name):
         if (self.__work_dir__ is None):
-            return False
+            return None
         list_of_obj = os.listdir(self.__work_dir__)
         list_of_files = list()
         for obj in list_of_obj:
@@ -35,7 +35,7 @@ class Analizer:
         print "Analyze summary : total words found - " \
               + str(len(total.words_dic)) + ", total chars found - " \
               + str(len(total.chars_dic))
-        return True
+        return total
 
 # Analize single file and return FileStatistics object as result
     def analize_single_file(self, name):
@@ -107,14 +107,14 @@ class Analizer:
             return None
         dest_file.write("List of words and times used :\n")
         sorted_words = total.words_dic.keys()
-        sorted_words.sort()        
-        for word in sorted_words:
+        sorted_words.sort()
+        for word in total.words_dic:
             dest_file.write("\t" + word + " - " + str(total.words_dic[word])
                             + "\n")
         dest_file.write("List of chars and times used :\n")
         sorted_chars = total.chars_dic.keys()
-        sorted_chars.sort() 
-        for char in sorted_chars:
+        sorted_chars.sort()
+        for char in total.chars_dic:
             dest_file.write("\t" + char + " - " + str(total.chars_dic[char])
                             + "\n")
         # write each file's statistics
@@ -123,14 +123,26 @@ class Analizer:
                             + "\" statistics :\n")
             dest_file.write("List of words and times used in file:\n")
             sorted_words = file_stat.words_dic.keys()
-            sorted_words.sort()        
+            sorted_words.sort()
             for word in sorted_words:
                 dest_file.write("\t" + word + " - "
                                 + str(file_stat.words_dic[word]) + "\n")
             dest_file.write("List of chars and times used in file:\n")
             sorted_chars = file_stat.chars_dic.keys()
-            sorted_chars.sort() 
+            sorted_chars.sort()
             for char in sorted_chars:
                 dest_file.write("\t" + char + " - "
                                 + str(file_stat.chars_dic[char]) + "\n")
+        import matplotlib.pyplot as plt
+        x_values = list()
+        for x in range (1, len(total.words_dic.values())+1):
+            x_values.append(x)
+
+        import pdb
+        pdb.set_trace()
+
+        y_values = total.words_dic.values()   
+        plt.hist(x_values, weights=y_values)
         dest_file.write("#End of file.")
+        dest_file.close()
+        plt.show()
