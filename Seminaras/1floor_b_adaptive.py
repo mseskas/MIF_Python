@@ -22,9 +22,9 @@ cv.NamedWindow("thr", 1)
 img = cv2.imread("./b.jpg")
 img = cv.fromarray(img)
 
-gray = cv.CreateImage((img.width, img.height), 8, 1)
-dst = cv.CreateImage((img.width, img.height), 8, 1)
-# dst = cv.CreateImage((img.width, img.height), 8, 1)
+gray = cv.CreateImage((img.width, img.height), cv.IPL_DEPTH_8U, 1)
+dst = cv.CreateImage((img.width, img.height), cv.IPL_DEPTH_8U, 1)
+# dst = cv.CreateImage((img.width, img.height), cv.IPL_DEPTH_8U, 1)
 
 cv.CvtColor(img, gray, cv.CV_BGR2GRAY)
 
