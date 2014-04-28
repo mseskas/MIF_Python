@@ -4,7 +4,7 @@ import cv2
 import sys
 
 
-cv.NamedWindow("camera", 1)
+cv.NamedWindow("img", 1)
 cv.NamedWindow("thr", 1)
 
 #capture = cv.CaptureFromCAM(0)
@@ -23,7 +23,7 @@ cv.CvtColor(img, hsv, cv.CV_BGR2HSV)
 cv.InRangeS(hsv, (0,100,0), (180,255,255), dst)
 
 cv.ShowImage("thr", dst)
-cv.ShowImage("camera", hsv)
+cv.ShowImage("img", hsv)
 
 cv.WaitKey(0)
 cv.DestroyAllWindows()
